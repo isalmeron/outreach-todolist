@@ -1,15 +1,8 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import { Message } from "../Message";
+import { Message, MessageProps } from "../Message";
 
-interface MessageListProps {
-  messages: {
-    type: string;
-    message: string;
-  }[];
-}
-
-export const MessageList = ({ messages }: MessageListProps) => {
+export const MessageList = ({ messages }: { messages: MessageProps[] }) => {
   return (
     <Grid container direction="column" justifyContent="center">
       {messages.map((message) => (

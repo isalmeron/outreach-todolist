@@ -14,21 +14,23 @@ const useStyles = makeStyles({
   },
 });
 
-export const Message = ({
-  message,
-}: {
-  message: {
-    type: string;
-    message: string;
-  };
-}) => {
+export interface MessageProps {
+  message: string;
+  type: string;
+  timestamp: string;
+}
+
+export const Message = ({ message }: { message: MessageProps }) => {
   const styles = useStyles();
   return (
     <Grid container direction="row" alignItems="center">
       <Grid item xs={1}>
+        <Typography variant="caption">{message.timestamp}</Typography>
+      </Grid>
+      <Grid item xs={1}>
         {message.type}
       </Grid>
-      <Grid item xs={11}>
+      <Grid item xs={10}>
         <Paper variant="outlined" className={styles.paper}>
           <Typography variant="subtitle1">
             <span className={styles.strong}>You </span>
