@@ -8,20 +8,18 @@ function App() {
   const [messageList, setMessageList] = useState<
     { message: string; type: string }[]
   >([]);
-  const [messageType, setMessageType] = useState(types.a);
+  const [messageType, setMessageType] = useState<string | undefined>(types.a);
 
   const handleAddMessage = (message: string) => {
-    setMessageList([
-      ...messageList,
-      {
-        message,
-        type: messageType,
-      },
-    ]);
-  };
-
-  const handleSelectType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessageType(e.target.value);
+    if (messageType) {
+      setMessageList([
+        ...messageList,
+        {
+          message,
+          type: messageType,
+        },
+      ]);
+    }
   };
 
   return (
@@ -29,7 +27,7 @@ function App() {
       <Box>
         <MessageInput
           onAddItem={handleAddMessage}
-          onTypeSelect={handleSelectType}
+          onTypeSelect={setMessageType}
           selectedType={messageType}
         />
       </Box>

@@ -16,8 +16,8 @@ const useStyles = makeStyles({
 
 interface MessageInputProps {
   onAddItem: (msg: string) => void;
-  onTypeSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  selectedType: string;
+  onTypeSelect: (type: string | undefined) => void;
+  selectedType: string | undefined;
 }
 
 export const MessageInput = ({
@@ -44,9 +44,11 @@ export const MessageInput = ({
         <Button
           variant="contained"
           onClick={() => {
-            onAddItem("test message");
+            onAddItem(message);
             setMessage("");
+            onTypeSelect(undefined);
           }}
+          disabled={!!!(message !== "" && selectedType)}
         >
           Submit
         </Button>
