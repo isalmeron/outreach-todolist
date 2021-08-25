@@ -13,12 +13,12 @@ function App() {
     if (messageType) {
       const date = new Date();
       setMessageList([
-        ...messageList,
         {
           message,
           type: messageType,
           timestamp: `${date.getHours()}:${date.getMinutes()}`,
         },
+        ...messageList,
       ]);
     }
   };
